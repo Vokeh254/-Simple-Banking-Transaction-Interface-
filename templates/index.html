@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking Transaction Interface</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Simple Banking Transaction Interface</h1>
+        <p>Manage accounts, transfers, loan disbursement, and dormant account deletion.</p>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel">
+          <h2>Create Account</h2>
+          <form id="create-account-form">
+            <label>
+              Account Holder
+              <input type="text" name="holder_name" placeholder="e.g. Jane Doe" required />
+            </label>
+            <label>
+              Initial Deposit (KES)
+              <input type="number" name="initial_deposit" min="0" step="0.01" value="0" required />
+            </label>
+            <button type="submit">Create Account</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Deposit Funds</h2>
+          <form id="deposit-form">
+            <label>
+              Account ID / Account Number
+              <input type="text" name="account_id" placeholder="ACC-XXXXXX" required />
+            </label>
+            <label>
+              Amount (KES)
+              <input type="number" name="amount" min="0.01" step="0.01" value="500" required />
+            </label>
+            <button type="submit">Deposit</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Withdraw Funds</h2>
+          <form id="withdraw-form">
+            <label>
+              Account ID / Account Number
+              <input type="text" name="account_id" placeholder="ACC-XXXXXX" required />
+            </label>
+            <label>
+              Amount (KES)
+              <input type="number" name="amount" min="0.01" step="0.01" value="200" required />
+            </label>
+            <button type="submit">Withdraw</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Transfer Funds</h2>
+          <form id="transfer-form">
+            <label>
+              From Account
+              <input type="text" name="from_account_id" placeholder="Source account" required />
+            </label>
+            <label>
+              To Account
+              <input type="text" name="to_account_id" placeholder="Destination account" required />
+            </label>
+            <label>
+              Amount (KES)
+              <input type="number" name="amount" min="0.01" step="0.01" value="100" required />
+            </label>
+            <button type="submit">Transfer</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Delete Dormant Account</h2>
+          <form id="delete-dormant-form">
+            <label>
+              Account ID / Account Number
+              <input type="text" name="account_id" placeholder="ACC-XXXXXX" required />
+            </label>
+            <label>
+              Inactive Days
+              <input type="number" name="inactive_days" min="30" step="1" value="45" required />
+            </label>
+            <button type="submit">Delete Dormant Account</button>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Loan Account</h2>
+          <form id="loan-form">
+            <label>
+              Account ID / Account Number
+              <input type="text" name="account_id" placeholder="ACC-XXXXXX" required />
+            </label>
+            <label>
+              Loan Amount (KES)
+              <input type="number" name="amount" min="1" step="100" value="10000" required />
+            </label>
+            <button type="submit">Create Loan &amp; Disburse</button>
+          </form>
+        </section>
+      </main>
+
+      <section class="panel accounts-panel">
+        <div class="section-header">
+          <h2>Accounts</h2>
+          <button id="refresh-accounts" class="secondary">Refresh</button>
+        </div>
+        <div id="message" class="message" aria-live="polite"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Holder</th>
+                <th>Account Number</th>
+                <th>Balance</th>
+                <th>Dormant</th>
+                <th>Loan Account</th>
+                <th>Loan Balance</th>
+              </tr>
+            </thead>
+            <tbody id="accounts-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
